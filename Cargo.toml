@@ -1,0 +1,35 @@
+[package]
+name = "highgaze"
+version = "0.1.0"
+edition = "2021"
+description = "High-performance ADS-B data collector and storage system"
+repository = "https://github.com/19h/highgaze"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+tokio = { version = "1.43", features = ["full"] }
+reqwest = { version = "0.12", features = ["gzip", "brotli", "deflate", "cookies"] }
+zstd = "0.13"
+base64 = "0.22"
+thiserror = "2.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+memmap2 = "0.9"
+parking_lot = "0.12"
+dashmap = "6.1"
+bytemuck = { version = "1.21", features = ["derive"] }
+zerocopy = { version = "0.8", features = ["derive"] }
+bytes = "1.9"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+clap = { version = "4.5", features = ["derive", "env"] }
+
+[dev-dependencies]
+tempfile = "3.19"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

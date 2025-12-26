@@ -1,0 +1,14 @@
+services:
+  highgaze:
+    build: .
+    restart: always
+    environment:
+      - ADSB_SESSION_ID=${ADSB_SESSION_ID}
+      - ADSB_API_KEY=${ADSB_API_KEY}
+    volumes:
+      - ./data:/data
+    command:
+      - collect
+      - --data-path
+      - /data
+      - --delta
